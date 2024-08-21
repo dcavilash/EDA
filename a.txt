@@ -1,0 +1,94 @@
+primary key foreign key
+
+
+select lastname, firstname, orderid
+from employees
+inner join orders
+on employees.employeeid = orders.employeeid
+order by lastname,firstname
+
+select lastname, firstname, orders.orderid, products.productid,quantity, price
+from employees
+inner join orders
+on employees.employeeid = orders.employeeid
+inner join orderdetails
+on orders.orderid = orderdetails.orderid
+inner join products
+on orderdetails.productid = products.productid
+order by lastname, firstname
+
+
+#practice
+select customername, orderid, orderdate
+from customers
+inner join orders
+on customers.customerid = orders.customerid
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import calmap
+from pandas_profiling import ProfileReport
+
+
+
+df = pd.read_csv('supermarket_sales.csv')
+
+df.head(5)
+
+df.columns
+
+df.dtypes
+
+df['Date']
+
+df['Date']=pd.to_datetime(df['Date'])
+
+df.dtypes
+
+df.set_index('Date',inplace=True)
+
+df.head()
+
+df.describe()
+
+
+
+sns.distplot(df['Rating'])
+plt.axvline(x=np.mean(df['Rating']),c='Red',ls='--',label='mean')
+plt.axvline(x=np.percentile(df['Rating'],25),c='Blue',ls='--',label='25-75 percentile')
+plt.axvline(x=np.percentile(df['Rating'],75),c='Blue',ls='--')
+plt.legend()
+
+#Looks like a semi uniform distribution
+
+df.hist(figsize=(10,10))
+
+sns.countplot(df['Branch'])
+df['Branch'].value_counts()
+
+sns.countplot(df['Payment'])
+df['Payment'].value_counts()
+
