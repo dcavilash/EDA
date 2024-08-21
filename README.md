@@ -1,2 +1,1 @@
-Download all files
-Run EDA.ipynb
+Download all files then run EDA.ipynb
